@@ -2,7 +2,7 @@ class Character
     def initialize(name, race, _class, alignment, str, dex, con, int, wis, cha)
         @level = 1
         @exp = 0
-        @levelEXP = {_1:300,_2:900,_3:2700,_4:6500}
+        @levelEXP = {_1:300,_2:900,_3:2700,_4:6500,_5:14000,_6:23000,_7:34000,_8:48000,_9:64000}
         @name = name
         @race = race
         @_class = _class
