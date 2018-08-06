@@ -30,12 +30,17 @@ class Character
         @level += num
     end
 
+    def removeLevels(num)
+        @level -= num
+        @exp = @levelEXP[:"_#{@level - 1}"]
+    end
+
     def addEXP(num)
         @exp += num
         if @exp >= @levelEXP[:"_#{@level}"]
             self.addLevels(1)
+        end
     end
-end
 
 c = Character.new('Randwulf','High Elf','Paladin','Neutral Good',15,12,10,15,12,14)
 puts c
@@ -56,6 +61,10 @@ puts c
 c.addEXP(300)
 puts c
 c.addEXP(300)
+puts c
+c.removeLevels(1)
+puts c
+c.addEXP(100)
 puts c
 
 end
