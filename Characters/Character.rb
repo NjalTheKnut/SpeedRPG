@@ -101,7 +101,7 @@ class Character
     c.removeEXP(305000)
     c.removeEXP(50000)
     c.removeEXP(1)
-    c.setEXP(865)
     c.setEXP(900)
+    c.setEXP(865)
     
 end
