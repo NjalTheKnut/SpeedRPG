@@ -94,14 +94,75 @@ class Character
         end
     end
 
-    c = Character.new('Randwulf','High Elf','Paladin','Neutral Good',15,12,10,15,12,14)
-    c.addEXP(5000)
-    c.addEXP(350000)
-    c.addEXP(1)
-    c.removeEXP(305000)
-    c.removeEXP(50000)
-    c.removeEXP(1)
-    c.setEXP(900)
-    c.setEXP(865)
+    def create()
+            msg = "Name: "
+            print msg
+            name = gets
+            msg = "\nRace: "
+            print msg
+            race = gets
+            msg = "\nClass: "
+            print msg
+            _class = gets
+            msg = "\nAlignment: "
+            print msg
+            alignment = gets
+            msg = "\nSTR: "
+            print msg
+            str = gets
+            msg = "\nDEX: "
+            print msg
+            dex = gets
+            msg = "\nCON: "
+            print msg
+            con = gets
+            msg = "\nINT: "
+            print msg
+            int = gets
+            msg = "\nWIS: "
+            print msg
+            wis = gets
+            msg = "\nCHA: "
+            print msg
+            cha = gets
+            return Character.new(name, race, _class, alignment, str, dex, con, int, wis, cha)
+    end
+
+    def menu()
+        welcome = "Welcome to SpeedRPG Characters!"
+        puts welcome
+        options = "Please select an option:
+        1) Create a New Character
+        2) Update an Existing Character
+        3) Quit"
+        puts options
+        choice = gets.to_i()
+        loop do
+            bit = false
+            case choice
+            when 1
+                c = Character.create()
+            when 2
+                msg = "This feature is still under construction.  Please check back later!"
+                puts msg
+            when 3
+                bit = true
+            end
+            break if bit == true
+        end
+    end
+end
+
+    # c = Character.new('Randwulf','High Elf','Paladin','Neutral Good',15,12,10,15,12,14)
+    # c.addEXP(5000)
+    # c.addEXP(350000)
+    # c.addEXP(1)
+    # c.removeEXP(305000)
+    # c.removeEXP(50000)
+    # c.removeEXP(1)
+    # c.setEXP(900)
+    # c.setEXP(865)
+
+    Character.menu()
     
 end
