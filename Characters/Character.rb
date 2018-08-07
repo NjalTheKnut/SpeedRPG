@@ -94,13 +94,14 @@ class Character
         end
     end
 
-c = Character.new('Randwulf','High Elf','Paladin','Neutral Good',15,12,10,15,12,14)
-c.addEXP(5000)
-c.addEXP(350000)
-c.addEXP(1)
-c.removeEXP(305000)
-c.removeEXP(50000)
-c.removeEXP(1)
-c.setEXP(865)
-c.setEXP(900)
+    c = Character.new('Randwulf','High Elf','Paladin','Neutral Good',15,12,10,15,12,14)
+    c.addEXP(5000)
+    c.addEXP(350000)
+    c.addEXP(1)
+    c.removeEXP(305000)
+    c.removeEXP(50000)
+    c.removeEXP(1)
+    c.setEXP(865)
+    c.setEXP(900)
+    
 end
