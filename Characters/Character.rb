@@ -19,14 +19,14 @@ class Character
   end
 
   def to_s()
-    "\tName: #{@name}   Class: #{@_class}(#{@level})
-    Race: #{@race}  Alignment: #{@alignment} EXP: #{@exp}
-    STR: #{@str}
-    DEX: #{@dex}
-    CON: #{@con}
-    INT: #{@int}
-    WIS: #{@wis}
-    CHA: #{@cha}"
+    "Name: #{@name} Class: #{@_class}(#{@level})
+    \nRace: #{@race} Alignment: #{@alignment} EXP: #{@exp}
+    \nSTR: #{@str}
+    \nDEX: #{@dex}
+    \nCON: #{@con}
+    \nINT: #{@int}
+    \nWIS: #{@wis}
+    \nCHA: #{@cha}"
   end
 
   def addLevels(num)
@@ -129,6 +129,24 @@ class Character
     Character.new(name, race, _class, alignment, str, dex, con, int, wis, cha)
   end
 
+  def self.view()
+    len = @roster.length()
+    if len == 0
+      msg = "There are no existing characters."
+      puts msg
+    else
+      msg = "There are currently (#{len}) existing characters.  Which should be opened? (Enter Number)"
+      puts msg
+      n = gets.to_i()
+      if n <= 0 || n > len
+        msg = "Please enter a number between 1 and #{len}."
+        puts msg
+      else
+        puts @roster[n-1]
+      end
+    end
+  end
+
   def self.menu()
     welcome = 'Welcome to SpeedRPG Characters!'
     puts welcome
@@ -145,10 +163,7 @@ class Character
         c = Character.create()
         @roster.push(c)
       when 2
-        puts @roster[0]
-        
-        msg = 'This feature is still under construction.  Please check back later!'
-        puts msg
+        view()
       when 3
         bit = true
       end
