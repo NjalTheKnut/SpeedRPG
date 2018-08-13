@@ -1,5 +1,5 @@
 class Character
-  @roster = []
+  @@roster = {}
   def initialize(name, race, _class, alignment, str, dex, con, int, wis, cha)
     @level = 1
     @exp = 0
@@ -126,29 +126,23 @@ class Character
     msg = "\nCHA: "
     print msg
     cha = gets.chomp
-    Character.new(name, race, _class, alignment, str, dex, con, int, wis, cha)
+    c = Character.new(name, race, _class, alignment, str, dex, con, int, wis, cha)
+    @@roster
+    @@roster.each {|name, self| puts "#{name}=>#{self}"}
   end
 
   def self.view()
-    len = @roster.length()
+    len = @@roster.length()
     if len == 0
       msg = "There are no existing characters."
       puts msg
     else
-      if len == 1
-        msg = "There is currently only (#{len}) existing Character.  Enter '1' to view them."
-        puts msg
-      else
-        msg = "There are currently (#{len}) existing characters.  Which should be opened? (Enter Number)"
-        puts msg
+      @@roster.each do |name, _class, level|
+        puts "#{name}: #{_class}(#{level})"
       end
-      n = gets.to_i()
-      if n <= 0 || n > len
-        msg = "Please enter a number between 1 and #{len}."
-        puts msg
-      else
-        puts @roster[n-1]
-      end
+      n = gets.chomp
+
+      puts @@roster[:"#{n}"]
     end
   end
 
@@ -166,7 +160,6 @@ class Character
       case choice
       when 1
         c = Character.create()
-        @roster.push(c)
       when 2
         view()
       when 3
