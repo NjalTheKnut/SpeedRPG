@@ -15,12 +15,12 @@ class Character
     @int = int
     @wis = wis
     @cha = cha
-    puts self
+    #puts self
   end
 
   def to_s()
-    "Name: #{@name} Class: #{@_class}(#{@level})
-    \nRace: #{@race} Alignment: #{@alignment} EXP: #{@exp}
+    "Name: #{@name}\tClass: #{@_class}(#{@level})
+    \nRace: #{@race}\tAlignment: #{@alignment}\tEXP: #{@exp}
     \nSTR: #{@str}
     \nDEX: #{@dex}
     \nCON: #{@con}
@@ -98,34 +98,34 @@ class Character
   def self.create()
     msg = 'Name: '
     print msg
-    name = gets
+    name = gets.chomp
     msg = "\nRace: "
     print msg
-    race = gets
+    race = gets.chomp
     msg = "\nClass: "
     print msg
-    _class = gets
+    _class = gets.chomp
     msg = "\nAlignment: "
     print msg
-    alignment = gets
+    alignment = gets.chomp
     msg = "\nSTR: "
     print msg
-    str = gets
+    str = gets.chomp
     msg = "\nDEX: "
     print msg
-    dex = gets
+    dex = gets.chomp
     msg = "\nCON: "
     print msg
-    con = gets
+    con = gets.chomp
     msg = "\nINT: "
     print msg
-    int = gets
+    int = gets.chomp
     msg = "\nWIS: "
     print msg
-    wis = gets
+    wis = gets.chomp
     msg = "\nCHA: "
     print msg
-    cha = gets
+    cha = gets.chomp
     Character.new(name, race, _class, alignment, str, dex, con, int, wis, cha)
   end
 
@@ -135,8 +135,13 @@ class Character
       msg = "There are no existing characters."
       puts msg
     else
-      msg = "There are currently (#{len}) existing characters.  Which should be opened? (Enter Number)"
-      puts msg
+      if len == 1
+        msg = "There is currently only (#{len}) existing Character.  Enter '1' to view them."
+        puts msg
+      else
+        msg = "There are currently (#{len}) existing characters.  Which should be opened? (Enter Number)"
+        puts msg
+      end
       n = gets.to_i()
       if n <= 0 || n > len
         msg = "Please enter a number between 1 and #{len}."
@@ -173,15 +178,7 @@ class Character
     end
     end
 
-  # c = Character.new('Randwulf','High Elf','Paladin','Neutral Good',15,12,10,15,12,14)
-  # c.addEXP(5000)
-  # c.addEXP(350000)
-  # c.addEXP(1)
-  # c.removeEXP(305000)
-  # c.removeEXP(50000)
-  # c.removeEXP(1)
-  # c.setEXP(900)
-  # c.setEXP(865)
-
+  c = Character.new('Randwulf','High Elf','Paladin','Neutral Good',15,12,10,15,12,14)
+  @roster.push(c)
   menu()
 end
