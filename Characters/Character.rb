@@ -34,7 +34,7 @@ class Character
   @@roster = {}
   @@count = 0
   attr_accessor :name, :race, :_class, :level
-    def initialize(name, race, _class, alignment, str, dex, con, int, wis, cha)
+  def initialize(name, race, _class, alignment, str, dex, con, int, wis, cha)
     @level = 1
     @exp = 0
      @name = name
@@ -51,9 +51,6 @@ class Character
     @@count+=1
     #puts self
   end
-  
-  # @@levelEXP = { _2: 300, _3: 900, _4: 2700, _5: 6500, _6: 14000, _7: 23000, _8: 34000, _9: 48000, _10: 64000, _11: 85000, _12: 100000,
-  #    _13: 120000, _14: 140000, _15: 165000, _16: 195000, _17: 225000, _18: 265000, _19: 305000, _20: 355000 }
   
   def setLevel(exp)
     case exp
@@ -295,10 +292,14 @@ class Character
       break if bit == true
     end
   end
-
   c1 = Character.new('Randwulf','High Elf','Paladin','Neutral Good',15,12,10,15,12,14)
   c2 = Character.new('Bobo','Halfling','Rogue','True Neutral',8,15,12,15,12,8)
   c3 = Character.new('Haelan','High Elf','Cleric','Lawful Good',12,12,12,10,15,12)
-#  @@roster = @@roster.merge!("#{c.name}"=>c)
+  #  @@roster = @@roster.merge!("#{c.name}"=>c)
   menu()
 end
+
+=begin
+    @@levelEXP = { _2: 300, _3: 900, _4: 2700, _5: 6500, _6: 14000, _7: 23000, _8: 34000, _9: 48000, _10: 64000, _11: 85000, _12: 100000,
+    _13: 120000, _14: 140000, _15: 165000, _16: 195000, _17: 225000, _18: 265000, _19: 305000, _20: 355000 }
+=end
