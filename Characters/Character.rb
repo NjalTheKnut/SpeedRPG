@@ -17,9 +17,9 @@ class Character
     @int = int
     @wis = wis
     @cha = cha
-    @@roster = {"#{name}"=>self}
+    @@roster = @@roster.merge!("#{name}"=>self)
     @@count+=1
-    puts self
+    #puts self
   end
 
   def self.get_count
@@ -186,7 +186,9 @@ class Character
     end
   end
 
-  c = Character.new('Randwulf','High Elf','Paladin','Neutral Good',15,12,10,15,12,14)
-  @@roster = {"#{c.name}"=>c}
+  c1 = Character.new('Randwulf','High Elf','Paladin','Neutral Good',15,12,10,15,12,14)
+  c2 = Character.new('Bobo','Halfling','Rogue','True Neutral',8,15,12,15,12,8)
+  c3 = Character.new('Haelan','High Elf','Cleric','Lawful Good',12,12,12,10,15,12)
+#  @@roster = @@roster.merge!("#{c.name}"=>c)
   menu()
 end
