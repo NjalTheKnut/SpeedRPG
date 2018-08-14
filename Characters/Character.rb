@@ -1,12 +1,13 @@
 class Character
   @@roster = {}
+  @@count = 0
   attr_accessor :name, :race, :_class, :level
+  @@levelEXP = { _2: 300, _3: 900, _4: 2700, _5: 6500, _6: 14_000, _7: 23_000, _8: 34_000, _9: 48_000, _10: 64_000, _11: 85_000, _12: 100_000, _13: 120_000,
+    _14: 140_000, _15: 165_000, _16: 195_000, _17: 225_000, _18: 265_000, _19: 305_000, _20: 355_000 }
   def initialize(name, race, _class, alignment, str, dex, con, int, wis, cha)
     @level = 1
     @exp = 0
-    @levelEXP = { _2: 300, _3: 900, _4: 2700, _5: 6500, _6: 14_000, _7: 23_000, _8: 34_000, _9: 48_000, _10: 64_000, _11: 85_000, _12: 100_000, _13: 120_000,
-    _14: 140_000, _15: 165_000, _16: 195_000, _17: 225_000, _18: 265_000, _19: 305_000, _20: 355_000 }
-    @name = name
+     @name = name
     @race = race
     @_class = _class
     @alignment = alignment
@@ -16,12 +17,13 @@ class Character
     @int = int
     @wis = wis
     @cha = cha
-    @@roster = {:"#{@name}"=>self.to_s()}
+    @@roster = {"#{name}"=>self}
+    @@count+=1
     puts self
   end
 
-  def self.get_roster
-    @@roster
+  def self.get_count
+    @@count
   end
 
   def to_s()
@@ -33,6 +35,14 @@ class Character
     \nINT: #{@int}
     \nWIS: #{@wis}
     \nCHA: #{@cha}"
+  end
+
+  def self.get_roster
+    @@roster
+  end
+
+  def self.get_levelEXP
+    @@levelEXP
   end
 
   def addLevels(num)
@@ -49,7 +59,7 @@ class Character
     elsif @level == 20
       355_000
     else
-      @levelEXP[:"_#{@level + 1}"]
+      @@levelEXP[:"_#{@level + 1}"]
     end
   end
 
@@ -59,7 +69,7 @@ class Character
     elsif @level == 20
       355_000
     else
-      @levelEXP[:"_#{@level}"]
+      @@levelEXP[:"_#{@level}"]
     end
   end
 
@@ -133,15 +143,23 @@ class Character
     print msg
     cha = gets.chomp
     c = Character.new(name, race, _class, alignment, str, dex, con, int, wis, cha)
-    
     #@@roster.each {|name| puts "#{self.name}=>#{self._class}"}
   end
 
   def self.view()
-    len = @@roster.length()
-    puts len
-    @@roster.each do |c|
-      puts "#{c}"
+    roster = get_roster()
+    names = roster.keys()
+    names.each do |x|
+      puts x
+    end
+    msg = "Please enter a character name from the list: "
+    puts msg
+    input = gets.chomp
+    if names.include?(input)
+      puts roster[input]
+    else
+      msg = "Please enter the name of an existing character."
+      puts msg
     end
   end
 
@@ -166,8 +184,9 @@ class Character
       end
       break if bit == true
     end
-    end
+  end
 
   c = Character.new('Randwulf','High Elf','Paladin','Neutral Good',15,12,10,15,12,14)
+  @@roster = {"#{c.name}"=>c}
   menu()
 end
