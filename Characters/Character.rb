@@ -19,8 +19,10 @@ class Character
     @@count+=1
     #puts self
   end
-  @@levelEXP = { _2: 300, _3: 900, _4: 2700, _5: 6500, _6: 14000, _7: 23000, _8: 34000, _9: 48000, _10: 64000, _11: 85000, _12: 100000,
-     _13: 120000, _14: 140000, _15: 165000, _16: 195000, _17: 225000, _18: 265000, _19: 305000, _20: 355000 }
+  
+  # @@levelEXP = { _2: 300, _3: 900, _4: 2700, _5: 6500, _6: 14000, _7: 23000, _8: 34000, _9: 48000, _10: 64000, _11: 85000, _12: 100000,
+  #    _13: 120000, _14: 140000, _15: 165000, _16: 195000, _17: 225000, _18: 265000, _19: 305000, _20: 355000 }
+  
   def setLevel(exp)
     case exp
     when (0...300)
@@ -199,9 +201,10 @@ class Character
     bit = false
     loop do
       names.each do |x|
-        puts x
+        msg = "\n #{x}"
+        puts msg
       end
-      msg = "Please enter a character name from the list: "
+      msg = "\nPlease enter a character name from the list: "
       puts msg
       input = gets.chomp
       if names.include?(input)
