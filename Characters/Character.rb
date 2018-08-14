@@ -1,5 +1,6 @@
 class Character
   @@roster = {}
+  attr_accessor :name, :race, :_class, :level
   def initialize(name, race, _class, alignment, str, dex, con, int, wis, cha)
     @level = 1
     @exp = 0
@@ -15,7 +16,12 @@ class Character
     @int = int
     @wis = wis
     @cha = cha
-    #puts self
+    @@roster = {:"#{@name}"=>self.to_s()}
+    puts self
+  end
+
+  def self.get_roster
+    @@roster
   end
 
   def to_s()
@@ -127,22 +133,15 @@ class Character
     print msg
     cha = gets.chomp
     c = Character.new(name, race, _class, alignment, str, dex, con, int, wis, cha)
-    @@roster
-    @@roster.each {|name, self| puts "#{name}=>#{self}"}
+    
+    #@@roster.each {|name| puts "#{self.name}=>#{self._class}"}
   end
 
   def self.view()
     len = @@roster.length()
-    if len == 0
-      msg = "There are no existing characters."
-      puts msg
-    else
-      @@roster.each do |name, _class, level|
-        puts "#{name}: #{_class}(#{level})"
-      end
-      n = gets.chomp
-
-      puts @@roster[:"#{n}"]
+    puts len
+    @@roster.each do |c|
+      puts "#{c}"
     end
   end
 
@@ -165,13 +164,10 @@ class Character
       when 3
         bit = true
       end
-    
-    
       break if bit == true
     end
     end
 
   c = Character.new('Randwulf','High Elf','Paladin','Neutral Good',15,12,10,15,12,14)
-  @roster.push(c)
   menu()
 end
