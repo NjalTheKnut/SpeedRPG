@@ -198,7 +198,6 @@ class Character
   def self.view()
     roster = get_roster()
     names = roster.keys()
-    bit = false
     loop do
       names.each do |x|
         msg = "\n #{x}"
@@ -208,16 +207,17 @@ class Character
       puts msg
       input = gets.chomp
       if names.include?(input)
-        c = roster[input]
-        puts c
+        current = roster[input]
+        puts current
         msg = "Please select an option: 
-        1) Back to List
-        2) Edit Current"
+        1) Character List
+        2) Edit Current
+        3) Main Menu"
         puts msg
         choice = gets.to_i()
         case choice
         when 1
-          break
+          next
         when 2
           msg = "Please select an option: 
           1) Set EXP"
@@ -228,8 +228,11 @@ class Character
             msg = "EXP: "
             puts msg
             exp = gets.to_i()
-            c.setEXP(exp)
+            current.setEXP(exp)
+            next
           end
+        when 3
+          break
         end
       else
         msg = "Please enter the name of an existing character."
