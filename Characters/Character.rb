@@ -97,10 +97,6 @@ class Character
     end
   end
 
-  def self.get_count
-    @@count
-  end
-
   def to_s()
     "Name: #{@name}\tClass: #{@_class}(#{@level})
     \nRace: #{@race}\tAlignment: #{@alignment}\tEXP: #{@exp}
@@ -116,8 +112,8 @@ class Character
     @@roster
   end
 
-  def setEXP(num)
-    @exp = num
+  def setEXP(exp)
+    @exp = exp
     self.setLevel(@exp)
   end
 
@@ -153,7 +149,6 @@ class Character
     print msg
     cha = gets.chomp
     c = Character.new(name, race, _class, alignment, str, dex, con, int, wis, cha)
-    #@@roster.each {|name| puts "#{self.name}=>#{self._class}"}
   end
 
   def self.view()
@@ -161,37 +156,37 @@ class Character
     names = roster.keys()
     loop do
       msg = "Please select an option: 
-        1) View Character
-        2) Edit Character
-        3) Main Menu"
+      1) View Character
+      2) Edit Character
+      3) Main Menu"
+      puts msg
+      choice = gets.to_i()
+      case choice
+      when 1
+        current = getCharacter()
+        puts current
+      when 2
+        current = getCharacter()
+        msg = "Please select an option: 
+        1) Set EXP"
         puts msg
         choice = gets.to_i()
         case choice
         when 1
-          current = getCharacter()
-          puts current
-        when 2
-          current = getCharacter()
-          msg = "Please select an option: 
-          1) Set EXP"
+          msg = "EXP: "
           puts msg
-          choice = gets.to_i()
-          case choice
-          when 1
-            msg = "EXP: "
-            puts msg
-            exp = gets.to_i()
-            current.setEXP(exp)
-            puts current
-          else
-            msg = "Please enter a valid selection."
-            puts msg
-          end
-        when 3
-          break
+          exp = gets.to_i()
+          current.setEXP(exp)
+          puts current
+        else
+          msg = "Please enter a valid selection."
+          puts msg
         end
+      when 3
+        break
       end
     end
+  end
 
   def self.getCharacter()
     roster = get_roster()
@@ -215,7 +210,6 @@ class Character
     end
   end
 
-
   def self.menu()
     welcome = 'Welcome to SpeedRPG Characters!'
     puts welcome
@@ -238,6 +232,7 @@ class Character
       break if bit == true
     end
   end
+  
   c1 = Character.new('Randwulf','High Elf','Paladin','Neutral Good',15,12,10,15,12,14)
   c2 = Character.new('Bobo','Halfling','Rogue','True Neutral',8,15,12,15,12,8)
   c3 = Character.new('Haelan','High Elf','Cleric','Lawful Good',12,12,12,10,15,12)
@@ -248,6 +243,8 @@ end
     @@levelEXP = { _2: 300, _3: 900, _4: 2700, _5: 6500, _6: 14000, _7: 23000, _8: 34000, _9: 48000, _10: 64000, _11: 85000, _12: 100000,
     _13: 120000, _14: 140000, _15: 165000, _16: 195000, _17: 225000, _18: 265000, _19: 305000, _20: 355000 }
     
+    #@@roster.each {|name| puts "#{self.name}=>#{self._class}"}
+
     # if num > @exp
     #   temp = num - @exp
     #   addEXP(temp)
