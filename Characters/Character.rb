@@ -191,8 +191,9 @@ class Character
     roster = get_roster()
     names = roster.keys()
     loop do
+      puts "\n"
       names.each do |x|
-        msg = "\n #{x}"
+        msg = "#{x}"
         puts msg
       end
       msg = "\nPlease enter a character name from the list: "
