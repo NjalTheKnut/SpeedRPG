@@ -32,7 +32,6 @@
 
 class Character
   @@roster = {}
-  attr_accessor :name, :race, :_class, :level
   def initialize(name, race, _class, alignment, str, dex, con, int, wis, cha)
     @level = 1
     @exp = 0
