@@ -1,5 +1,5 @@
 =begin
-  <one line to give the program's name and a brief idea of what it does.>
+  <SpeedRPG: Characters - Create & Manage TRPG Character Profiles>
 
     Copyright (C) <year>  <name of author>
 
